@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: a4 portrait;
+            margin-top: 20mm;
+            margin-right: 0mm;
+            margin-left: 0mm;
+            margin-bottom: 16mm;
+            counter-increment: page;
+            @bottom-center {
+                content: '© Copyright 2017 Company Pty Ltd  All rights reserved   |   Confidential information';
+                white-space: pre;
+                color: grey;
+            }
+            @bottom-right {
+                content: counter(page);
+                border-left: 1px solid black;
+                white-space: pre;
+                color: grey;
+                margin-bottom: -10px;
+                padding-left: 10px;
+                padding-right: 20px;
+
+            }
+
+        }
+
+        html {
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: normal;
+            color: #000000;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+
+            line-height: 150%;
+            display: inline;
+            width: auto;
+            height: auto;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body style="background-color: lightseagreen; margin: 0; padding: 0; height: 100%">
+<div>{{ assessment.title }}</div>
+<div>{{ assessment.id }}</div>
+
+{% for q_group in assessment.question_groups %}
+    <div>{{ q_group.title }}</div>
+    {% for q_sub_group in q_group.question_subgroups %}
+        {{ q_sub_group.title }}
+        {% for q_part in q_sub_group.question_parts %}
+            <div style="background-color: azure">Text - {{ q_part.text }}</div>
+            <div style="background-color: azure">Statement - {{ q_part.statement }}</div>
+            {% for result_item in result.result_items %}
+                =-=-=-=-=-=-=-=-=-=>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+</body>
+</html>
