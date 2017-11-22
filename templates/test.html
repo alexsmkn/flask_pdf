@@ -2,7 +2,68 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/style.css"/>
     <style>
+        /*Font Face NeoGram */
+        /***************************/
+        @font-face {
+            font-family: 'NeoGram-Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: url("{{ url_for('static', filename='fonts/NeoGram/NeoGram-Medium.otf') }}") format('opentype');
+        }
+
+        @font-face {
+            font-family: 'NeoGram-Bold';
+            font-style: normal;
+            font-weight: 600;
+            src: url("{{ url_for('static', filename='fonts/NeoGram/NeoGram-Bold.otf') }}") format('opentype');
+        }
+
+        /* Font Face Roboto */
+        /***************************/
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 900;
+            src: local('Roboto-Black'), local('Roboto-Black'), url('./fonts/Roboto/Roboto-Black.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto-Bold';
+            font-style: normal;
+            font-weight: 700;
+            src: url("{{ url_for('static', filename='fonts/Roboto/Roboto-Bold.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto-Light';
+            font-style: normal;
+            font-weight: 300;
+            src: url("{{ url_for('static', filename='fonts/Roboto/Roboto-Light.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto-Medium';
+            font-style: normal;
+            font-weight: 500;
+            src: url("{{ url_for('static', filename='fonts/Roboto/Roboto-Medium.ttf') }}") format('truetype');
+        }
+
+        /* Default Style*/
+        /***************************/
+        @media print {
+            .page-break {
+                page-break-after: always;
+            }
+
+            .header.blue-section {
+                /*background: #4a81d7;*/
+                background-color: #3682d2 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
         @page {
             size: a4 portrait;
             margin-top: 0mm;
@@ -13,10 +74,9 @@
         }
 
         html {
-            font-family: Helvetica;
             font-size: 14px;
             font-weight: normal;
-            color: #000000;
+            color: #36404a;
             background-color: transparent;
             margin: 0;
             padding: 0;
@@ -27,9 +87,1146 @@
             height: auto;
             white-space: normal;
         }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: #36404a;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+
+        .row {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            overflow: hidden;
+        }
+
+        .moderate-title,
+        .high-title,
+        .low-title {
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            font-size: 16px !important;
+        }
+
+        .moderate-title span.action,
+        .high-title span.action,
+        .low-title span.action {
+            font-family: Roboto-Light, sans-serif;
+            font-weight: 300;
+        }
+
+        .moderate-title span.color {
+            font-family: Roboto-Bold, sans-serif;
+            font-weight: 700;
+        }
+
+        .high-title span.color {
+            font-family: Roboto-Black, sans-serif;
+            font-weight: 900;
+        }
+
+        .moderate-title span.color,
+        .blue-text {
+            color: #0275d8;
+        }
+
+        .high-title span.color {
+            color: green;
+        }
+
+        .f-left {
+            float: left;
+        }
+
+        .image-banner .bg-image {
+            position: relative;
+            height: 340px;
+        }
+
+        /* Tables style */
+        .table span.bold-text {
+            font-family: Roboto-Bold, sans-serif;
+            font-weight: 700;
+        }
+
+        .table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .table tbody th,
+        .table tbody td {
+            vertical-align: top;
+        }
+
+        .table tbody .section-title {
+            border-top: 4px solid #36404a;
+            margin-top: -1px;
+            margin-left: -1px;
+        }
+
+        .table tbody td {
+            font-family: Roboto-Light, sans-serif;
+            font-weight: 300;
+        }
+
+        /*Header Style*/
+        /***************************/
+        .header {
+            padding: 13px 47px 36px;
+        }
+
+        .header.blue-section {
+            /*background: #4a81d7;*/
+            background-color: rgb(54, 130, 210) !important;
+            color: #fff;
+        }
+
+        .header.sub-header .icon-subtitle {
+            background: rgb(54, 130, 210) !important;
+        }
+
+        .header.sub-header .top-subtitles h5:first-child {
+            border-color: rgb(54, 130, 210) !important;
+            /*border-color: #0275d8;*/
+        }
+
+        .header .top-subtitles {
+            overflow: hidden;
+            display: block;
+            min-height: 41px;
+        }
+
+        .header .title.icon {
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .header .icon-title {
+            display: block;
+            width: 30px;
+            height: 35px;
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+        }
+
+        .header .icon-title img {
+            width: 100%;
+        }
+
+        .header h1.title {
+            margin: 70px 0 0;
+            font-size: 44px;
+        }
+
+        .header h2.title {
+            font-size: 25px;
+            margin-top: 68px;
+        }
+
+        .header h2.title span.border-space {
+            width: 1px;
+            height: 20px;
+            background: #36404a;
+            display: inline-block;
+            margin-bottom: -1px;
+            margin-right: 8px;
+            margin-left: 12px;
+        }
+
+        .header h1.title, .header h2.title, .header h5 {
+            font-family: NeoGram-Medium, sans-serif;
+            font-weight: normal;
+        }
+
+        .top-subtitles h5 {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .top-subtitles h5:first-child {
+            border-right: 1px solid;
+            padding-right: 6px;
+            margin-right: 10px;
+        }
+
+        .icon-subtitle {
+            display: inline-block;
+            margin-right: 4px;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+        }
+
+        .top-subtitles h5.right-heading {
+            font-family: NeoGram-Bold, sans-serif;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .page-your-rating .main-content {
+            padding: 45px 50px 20px;
+        }
+
+        .main-content {
+            padding: 45px 50px 20px;
+        }
+
+        .page-your-rating .bg-image {
+            background: url("{{ url_for('static', filename='img/rating-page-banner.png') }}") 100% 100%;
+            background-size: 100%;
+        }
+
+        .page-your-rating .info-text p {
+            margin-bottom: 50px;
+            padding-right: 60px;
+            font-family: Roboto-Light, sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+        }
+
+        .page-your-rating .table th {
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            border-bottom: 4px solid;
+            text-align: left;
+            padding: 0 12px 10px;
+        }
+
+        .page-your-rating .table .btn-link {
+            display: block;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 17px;
+            /*margin-right: 1mm;*/
+            margin-top: 26px;
+            position: relative;
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+        }
+
+        .page-your-rating .table .cols td {
+            padding: 8px 13px 8px 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .page-your-rating .table .btn-link.btn-low {
+            background: linear-gradient(to left, #205a82 0%, #36404A 19%);
+        }
+
+        .page-your-rating .table .btn-link.btn-moderate {
+            background-image: linear-gradient(to left, #2D969D 0%, #3682D2 50%, #246291 100%);
+        }
+
+        .page-your-rating .table .btn-link.btn-high {
+            background: linear-gradient(to left, #2ab362 65%, #2ea095 100%);
+        }
+
+        .section.image-banner img {
+            width: 100%;
+        }
+
+        i.ion-arrow-right {
+            position: absolute;
+            right: 10px;
+            width: 14px;
+            height: 15px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url("{{ url_for('static', filename='img/icon-arrow.png') }}");
+        }
+
+        /*Page with Section Columns*/
+        /***************************/
+        .page-table-rating .bg-moderate {
+            background: #3682d2;
+            color: #fff;
+        }
+
+        .page-table-rating .main-content {
+            padding-top: 25px
+        }
+
+        .page-table-rating .bg-high {
+            background: #27af59;
+            color: #fff;
+        }
+
+        .page-table-rating .bg-low {
+            background: #36404a;
+            color: #fff;
+        }
+
+        .page-table-rating .table thead th {
+            border-top: 1px solid;
+            text-align: center;
+            padding: 8px 0 4px;
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .page-table-rating .table thead th.first-col {
+            width: 130px;
+            text-align: left;
+        }
+
+        .page-table-rating .table tbody .section-title {
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            text-align: left;
+            padding-top: 6px;
+            font-size: 13px;
+        }
+
+        .page-table-rating .table tbody td {
+            font-family: Roboto-Light, sans-serif;
+            padding: 10px;
+            font-size: 8.5pt;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .page-table-rating .table {
+            border-bottom: 1px solid;
+            border-collapse: separate;
+            border-spacing: 0 4px;
+        }
+
+        .page-table-rating .table tbody th {
+            border-top: 1px solid #36404a;
+        }
+
+        .page-table-rating .table tbody td {
+            background-clip: padding-box;
+            border-top: 2px solid #36404a;
+        }
+
+        /**********************/
+        /*Page Full Background image*/
+        .section-full-bg-image {
+            position: relative;
+            min-height: 1000px;
+            background: url("{{ url_for('static', filename='img/full-bg-image.jpg') }}") no-repeat top center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .section-full-bg-image .wrapper {
+            position: absolute;
+            top: 68px;
+            width: 540px;
+            right: 45px;
+        }
+
+        .section-full-bg-image .wrapper p {
+            font-family: Roboto-Light, sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        /*Page Section 1 – Title*/
+
+        .page-section-title .header h1.title {
+            font-size: 33px;
+        }
+
+        .page-section-title .image-banner .bg-image {
+            background: url("{{ url_for('static', filename='img/section-title.jpg') }}") no-repeat 70% 58%;
+            min-height: 340px;
+            background-size: cover;
+        }
+
+        .table.table-answers {
+            border-bottom: 1px solid #b0b7be;
+        }
+
+        .table .row-introduction {
+            border-top: 1px solid #36404a;
+        }
+
+        .table.table-answers tr th {
+            font-size: 16px;
+        }
+
+        .table.table-answers .section-title {
+            padding-top: 20px;
+        }
+
+        .table.table-answers .row-introduction th {
+            padding: 0 0 20px 0;
+        }
+
+        .table.table-answers .row-introduction td {
+            padding: 24px 12px 28px
+        }
+
+        .table .row-high-level {
+            border-top: 4px solid #27af59;
+            background: #e4f9e7;
+        }
+
+        .table .row-moderate-level {
+            border-top: 4px solid #3682d2;
+            background: #e7f5ff;
+        }
+
+        .table .row-low-level {
+            border-top: 4px solid #36404a;
+            background: #e6e6e6;
+        }
+
+        .table.table-answers td {
+            padding: 24px 12px 10px;
+        }
+
+        .table.table-answers tr th {
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            width: 150px;
+            text-align: left;
+            padding: 20px 0 20px 8px;
+        }
+
+        .table.table-answers p {
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .table tr.row-response {
+            border-top: 1px solid #b0b7be;
+        }
+
+        .table ul {
+            padding-left: 16px;
+        }
+
+        .table ul li {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .table .list-item li {
+            font-size: 13px;
+            line-height: 1.4;
+            list-style: none;
+        }
+
+        .table .list-item li .icon {
+            display: inline-block;
+            width: 12px;
+            height: 11px;
+            margin-right: 10px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .table .list-item li .icon.icon-check {
+            background-image: url("{{ url_for('static', filename='img/icon-check.png') }}");
+        }
+
+        .table .list-item li .icon.icon-wrong {
+            background-image: url("{{ url_for('static', filename='img/icon-wrong.png') }}");
+        }
+
+        /************************************/
+        .page-section-subtitle .header {
+            padding-bottom: 12px;
+        }
+
+        .page-section-subtitle .main-content {
+            padding-top: 0;
+        }
+
+        .section-row-subtitles {
+            border-top: 4px solid;
+            background: #e6e6e6;
+            padding: 15px 10px;
+        }
+
+        .section-row-subtitles h4 {
+            font-family: Roboto-Medium, sans-serif;
+            font-weight: 500;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .section-row-subtitles span.number {
+            border: 1px solid;
+            font-weight: normal;
+            padding: 4px 6px;
+            font-size: 11px;
+            margin-right: 12px;
+        }
+
+        .wrapper-page {
+            width: 795px;
+            margin: 0 auto;
+        }
+
     </style>
+
 </head>
-<body style="background-color: lightseagreen; margin: 0; padding: 0; height: 100%">
-qasdasdasd
+<body>
+<div class="wrapper-page page-your-rating">
+    <div class="header main-header blue-section">
+        <div class="top-subtitles">
+            <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+            <h5 class="f-left">Report title</h5>
+        </div>
+        <h1 class="title">Your rating</h1>
+    </div>
+    <div class="section image-banner">
+        <div class="bg-image"></div>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="row info-text">
+                <p>Tem est, quiatis exero modit vellabo. Occatenias expedit, int a evelique nihici nuscima ionecus,
+                    cusamet ad quatque num isserior moditaquas nonsed quid quatque num isserior moditaquas n ut fugia
+                    sum cum que quid et, eseque es ius et quiae. Et incia nonsedi genihicae experro volessit dolessed
+                    quibusae poribus amentib usapero rendis.erspidel il imolu.</p>
+            </div>
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th scope="col">LOW LEVEL</th>
+                    <th scope="col"><p class="moderate-title"><span class="color">MODERATE</span> LEVEL</p></th>
+                    <th scope="col"><p class="high-title"><span class="color">HIGH</span> LEVEL</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cols">
+                    <td>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                        Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                    </td>
+                    <td>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                        Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                    </td>
+                    <td>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                        Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat.
+                        Dam quam que laccabo reiusam et as con estionserro eriatin verrovid.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn-link btn-low">ACTION <i class="icon ion-arrow-right"></i></a>
+                    </td>
+                    <td>
+                        <a class="btn-link btn-moderate">ACTION <i class="icon ion-arrow-right"></i></a>
+                    </td>
+                    <td>
+                        <a class="btn-link btn-high">ACTION <i class="icon ion-arrow-right"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!-- End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-table-rating">
+    <div class="header sub-header">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading blue-text">Your rating</h5>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <table class="table" cellspacing="5" cellpadding="0">
+            <thead>
+            <tr>
+                <th scope="col" class="first-col">CATEGORY</th>
+                <th scope="col"><p class="low-title"><span class="color">LOW</span> LEVEL</th>
+                <th scope="col"><p class="moderate-title"><span class="color">MODERATE</span> LEVEL</th>
+                <th scope="col"><p class="high-title"><span class="color">HIGH</span> LEVEL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 1 - title</div>
+                </th>
+                <td>Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-moderate">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 2 - title</div>
+                </th>
+                <td>Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-moderate">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="section-title">Section 3 - title</div>
+                </th>
+                <td class="bg-low">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 4 - title</div>
+                </th>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-high">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 5 - title</div>
+                </th>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-moderate">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 6 - title</div>
+                </th>
+                <td class="bg-low">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-high">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 7 - title</div>
+                </th>
+                <td class="bg-low">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-high">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="section-title">Section 8 - title</div>
+                </th>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td class="bg-moderate">
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+                </td>
+                <td>
+                    Fercietu ritaquam rese nullor
+                    aliqui consectio. Ut autaspiciur,
+                    volorum occabore dem non eicia
+                    nihite aut autateceat rera ipitatas
+                    aut faceaqu iatuscid quatiant, qui
+                    vollaut estint expla nisint acculla
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!-- End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-your-report">
+    <div class="header main-header blue-section">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading">Part heading</h5>
+            </div>
+        </div>
+        <h1 class="title">Your Report</h1>
+    </div>
+    <div class="section-full-bg-image">
+        <div class="wrapper">
+            <p>Borum suntenti abor ma consedicae nectorerios samusae vero doluptas mi, num volorrum ad utae cus, ilit
+                alitatem. Nequiae aut et porum acerit et odis aliaspelenis estio. Itatur, simagnis distem faciis estium
+                et vendignam fugitiuntur, ut aliquae nis aut et fuga. Sam ut eaquianti ut assimaion cuptat.</p>
+            <p>Tem est, quiatis exero modit vellabo. Occatenias expedit, int a evelique nihici nuscima ionecus, cusamet
+                ad quatque num isserior moditaquas nonsed quid ut fugia sum cum que quid et, eseque es ius et quiae. Et
+                incia nonsedi genihicae experro volessit dolessed
+                quibusae poribus amentib usapero rendis eaturepudi dus dolupta tibus, odiosandae.
+                Ucium aria cuptum quaepturecum a accum rem sus evenihitae sinvend aeperspidel il imolutem cus dolore
+                nobit, intem sundi sintur, solecus.</p>
+        </div>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!-- End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-section-title">
+    <div class="header main-header blue-section">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading">Part heading</h5>
+            </div>
+        </div>
+        <h1 class="title icon">
+            <span class="icon-title"><img src="{{ url_for('static', filename='img/icon-white.png') }}"></span>
+            Section 1 – Title</h1>
+    </div>
+    <div class="section image-banner">
+        <div class="bg-image"></div>
+    </div>
+    <div class="main-content">
+        <table class="table table-answers">
+            <tbody>
+            <tr class="row-introduction">
+                <th scope="row">
+                    <div class="section-title">Introduction</div>
+                </th>
+                <td><p>Fugitis aut eumqui apitiamus quat volupti uribus volum net volore si omniendiae non corro cum
+                    entemped quis rehentecum, ut aut eliqui officid unditas eversperem fuga. Sitibeatis quassed quia
+                    volorep elecusdant, que reperferum ius, voluptat.</p>
+                    <p>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat. Dam quam que laccabo reiusam et as
+                        con estionserro eriatin verrovid quistiunte sam volupta eum comnist emporest, ea sed que vel il
+                        incia voluptatus es ad modi dolupta nist labo. Evelissimus, temquaesto voluptatus, sitiis dis as
+                        eum nam di ipsanderum veni ipsant quas sinvelest as eserrume cum harum, andissint fuga. Ut ut
+                        velestiur?</p>
+                    <p>Dantium ea volorpo restis dolum rehenimi, aborro occus alia volo moluptae sit lanis as receseq
+                        uamusaeptas entiore, occusam reius, quundi sam laut volum corem la dunt labor alit et
+                        ipieniature dolute.</p>
+                </td>
+            </tr>
+            <tr class="row-high-level row-position">
+                <th scope="row">
+                    <div class="row-title">Your position</div>
+                </th>
+                <td>
+                    <p class="high-title"><span class="color">HIGH</span> LEVEL
+                        <span class="action"> - ACTION</span></p>
+                    <p>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat. Dam quam que laccabo reiusam et as
+                        con estionserro eriatin verrovid.</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!--End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-section-subtitle">
+    <div class="header sub-header">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading blue-text">Part heading</h5>
+            </div>
+        </div>
+        <h2 class="title icon">
+            <span class="icon-title"><img src="{{ url_for('static', filename='img/icon-black.png') }}"></span>
+            Section 1.1<span class="border-space"></span> Title</h2>
+    </div>
+    <div class="main-content">
+        <div class="section-row-subtitles">
+            <h4><span class="number">1</span>Section 1.1 – Sub title</h4>
+        </div>
+        <table class="table table-answers">
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td><p>Iquam quiam quisto id quodis int harion etus inctatiunt volut quia solore explaut essi nonsequam
+                    volorescia sant audiata doloreic tet etus estias ea cus illabor am,
+                    occus el eicipsam sit alitaturio blam et diorum quas in et reperrum abo. Tatur, tentiusda pro
+                    torumquis aniatio nsequae. Et volupta tibusandero et reris endit imiliquatur
+                    as eaqui ommoluptas que sed que praerescius maionsequo eius si nis delitiis perempost.</p>
+                </td>
+            </tr>
+            <tr class="row-response">
+                <th scope="row">Your response</th>
+                <td>
+                    <p>Picipsam sit alitaturio blam et diorum quas in et reperrum abo:</p>
+                    <ul class="list-item">
+                        <li><i class="icon icon-check"></i>Quodis int harion</li>
+                        <li><i class="icon icon-check"></i>Etus inctatiunt volut quia solore explaut essi</li>
+                        <li><i class="icon icon-wrong"></i>Nonsequam volorescia sant audiata doloreic</li>
+                        <li><i class="icon icon-check"></i>Tet etus estias ea cus illabor am</li>
+                        <li><i class="icon icon-wrong"></i>Occus el eicipsam sit alitaturio blam et diorum quas</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="row-moderate-level row-position">
+                <th scope="row">
+                    <div class="row-title">Your position</div>
+                </th>
+                <td>
+                    <p class="moderate-title"><span class="color">MODERATE</span> LEVEL <span
+                            class="action"> - ACTION</span></p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!--End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-section-subtitle">
+    <div class="header sub-header">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading blue-text">Part heading</h5>
+            </div>
+        </div>
+        <h2 class="title icon">
+            <span class="icon-title"><img src="{{ url_for('static', filename='img/icon-black.png') }}"></span>
+            Section 1.2<span class="border-space"></span> Title</h2>
+    </div>
+    <div class="main-content">
+        <div class="section-row-subtitles">
+            <h4><span class="number">1</span>Section 1.2 – Sub title</h4>
+        </div>
+        <table class="table table-answers">
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td><p>Iquam quiam quisto id quodis int harion etus inctatiunt volut quia solore explaut essi nonsequam
+                    volorescia sant audiata doloreic tet etus estias ea cus illabor am,
+                    occus el eicipsam sit alitaturio blam et diorum quas in et reperrum abo. Tatur, tentiusda pro
+                    torumquis aniatio nsequae. Et volupta tibusandero et reris endit imiliquatur
+                    as eaqui ommoluptas que sed que praerescius maionsequo eius si nis delitiis perempost.</p>
+                </td>
+            </tr>
+            <tr class="row-response">
+                <th scope="row">Your response</th>
+                <td><p>Corenihicilit estotatur. <span class="bold-text">Nequam ne laboris</span> ratur
+                    accature, quia dolorionse periam que nuscipid mos es restrum laborehent, occus pelenecte nimus, et
+                    lam, exerest as sunt accaerum.</p>
+                    <p>Quis molorrore laborepudi ut re comnis et que pos prae <span class="bold-text">rem sequi as sitem harum</span>
+                        facidus explaccae nos volliqui reptam quibus alis si blam.</p>
+                </td>
+            </tr>
+            <tr class="row-high-level row-position">
+                <th scope="row">
+                    <div class="row-title">Your position</div>
+                </th>
+                <td>
+                    <p class="high-title"><span class="color">HIGH</span> LEVEL <span class="action"> - ACTION</span>
+                    </p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    <ul>
+                        <li>Test 1</li>
+                        <li>Test 2</li>
+                        <li>Test 3</li>
+                    </ul>
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!--End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-section-subtitle">
+    <div class="header sub-header">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading blue-text">Part heading</h5>
+            </div>
+        </div>
+        <h2 class="title icon">
+            <span class="icon-title"><img src="{{ url_for('static', filename='img/icon-black.png') }}"></span>
+            Section 1.3<span class="border-space"></span> Title</h2>
+    </div>
+    <div class="main-content">
+        <div class="section-row-subtitles">
+            <h4><span class="number">1</span>Section 1.3 – Sub title</h4>
+        </div>
+        <table class="table table-answers">
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td><p>Iquam quiam quisto id quodis int harion etus inctatiunt volut quia solore explaut essi nonsequam
+                    volorescia sant audiata doloreic tet etus estias ea cus illabor am,
+                    occus el eicipsam sit alitaturio blam et diorum quas in et reperrum abo. Tatur, tentiusda pro
+                    torumquis aniatio nsequae. Et volupta tibusandero et reris endit imiliquatur
+                    as eaqui ommoluptas que sed que praerescius maionsequo eius si nis delitiis perempost.</p>
+                </td>
+            </tr>
+            <tr class="row-response">
+                <th scope="row">Your response</th>
+                <td><p>Corenihicilit estotatur. <span class="bold-text">Nequam ne laboris</span> ratur
+                    accature, quia dolorionse periam que nuscipid mos es restrum laborehent, occus pelenecte nimus, et
+                    lam, exerest as sunt accaerum.</p>
+                    <p>Quis molorrore laborepudi ut re comnis et que pos prae <span class="bold-text">rem sequi as sitem harum</span>
+                        facidus explaccae nos volliqui reptam quibus alis si blam.</p>
+                </td>
+            </tr>
+            <tr class="row-low-level row-position">
+                <th scope="row">
+                    <div class="row-title">Your position</div>
+                </th>
+                <td>
+                    <p class="low-title"><span class="color">LOW</span> LEVEL <span class="action"> - ACTION</span></p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!--End Page-->
+
+<!-- Start Page-->
+<div class="wrapper-page page-section-title">
+    <div class="header main-header blue-section">
+        <div class="top-subtitles">
+            <div class="wrapper">
+                <h5 class="f-left"><span class="icon-subtitle"></span>Product name</h5>
+                <h5 class="f-left">Report title</h5>
+                <h5 class="right-heading">Part heading</h5>
+            </div>
+        </div>
+        <h1 class="title icon">
+            <span class="icon-title"><img src="{{ url_for('static', filename='img/icon-white.png') }}"></span>
+            Section 2 - Title</h1>
+    </div>
+    <div class="section image-banner">
+        <div class="bg-image"></div>
+    </div>
+    <div class="main-content">
+        <table class="table table-answers">
+            <tbody>
+            <tr class="row-introduction">
+                <th scope="row">
+                    <div class="section-title">Introduction</div>
+                </th>
+                <td><p>Fugitis aut eumqui apitiamus quat volupti uribus volum net volore si omniendiae non corro cum
+                    entemped quis rehentecum, ut aut eliqui officid unditas eversperem fuga. Sitibeatis quassed quia
+                    volorep elecusdant, que reperferum ius, voluptat.</p>
+                    <p>Lorem nisciamus, ommodia volorro reperumquis et, quiduntotat. Dam quam que laccabo reiusam et as
+                        con estionserro eriatin verrovid quistiunte sam volupta eum comnist emporest, ea sed que vel il
+                        incia voluptatus es ad modi dolupta nist labo. Evelissimus, temquaesto voluptatus, sitiis dis as
+                        eum nam di ipsanderum veni ipsant quas sinvelest as eserrume cum harum, andissint fuga. Ut ut
+                        velestiur?</p>
+                    <p>Dantium ea volorpo restis dolum rehenimi, aborro occus alia volo moluptae sit lanis as receseq
+                        uamusaeptas entiore, occusam reius, quundi sam laut volum corem la dunt labor alit et
+                        ipieniature dolute.</p>
+                </td>
+            </tr>
+            <tr class="row-high-level row-position">
+                <th scope="row">
+                    <div class="row-title">Your position</div>
+                </th>
+                <td>
+                    <p class="high-title"><span class="color">HIGH</span> LEVEL <span
+                            class="action"> - ACTION</span></p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-break"></div>
+</div>
+<!--End Page-->
 </body>
 </html>
