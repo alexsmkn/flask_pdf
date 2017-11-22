@@ -1,5 +1,6 @@
 from flask import render_template
-from weasyprint import HTML
+#from weasyprint import HTML
+from flask_weasyprint import HTML
 
 from models import Assessment, QuestionGroup, Result, QuestionSubgroup, ResultItem, Answer
 
