@@ -28,12 +28,22 @@ class QuestionSubgroup(db.Model):
     levels = db.relation('QuestionSubgroupLevel', backref='question_subgroup', lazy=True)
 
 
+question_answers = db.Table('question_answers',
+                            db.Column('answer_id', db.Integer, db.ForeignKey('answer.id'), primary_key=True),
+                            db.Column('question_part_id', db.Integer, db.ForeignKey('question_part.id'),
+                                      primary_key=True)
+                            )
+
+
 class QuestionPart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(80), nullable=False)
+    type = db.Column(db.String(80), nullable=False, default='radio')
     order = db.Column(db.Integer, nullable=False)
     statement = db.Column(db.String(100))
+    answers = relationship("Answer", secondary=question_answers)
     question_subgroup_id = db.Column(db.Integer, db.ForeignKey('question_subgroup.id'), nullable=False)
+
 
 
 result_answers = db.Table('answers',

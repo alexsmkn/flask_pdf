@@ -19,7 +19,7 @@
                 content: counter(page);
                 border-left: 1px solid black;
                 white-space: pre;
-                color: grey;
+                color: darkgrey;
                 margin-bottom: -10px;
                 padding-left: 10px;
                 padding-right: 20px;
@@ -45,20 +45,50 @@
         }
     </style>
 </head>
-<body style="background-color: lightseagreen; margin: 0; padding: 0; height: 100%">
+<body style="background-color : rgb(210,176,134);
+; margin: 0; padding: 0; height: 100%">
 <div>{{ assessment.title }}</div>
 <div>{{ assessment.id }}</div>
 
 {% for q_group in assessment.question_groups %}
     <div>{{ q_group.title }}</div>
+    {% with %}
+        {% set group_level=group_levels[q_group.id] %}
+        <div> Your level - > {{ group_level.statement }}</div>
+    {% endwith %}
     {% for q_sub_group in q_group.question_subgroups %}
         {{ q_sub_group.title }}
+        {% with %}
+            {% set subgroup_level=subgroups_levels[q_sub_group.id] %}
+            <div> Your level at subgroup - > {{ subgroup_level.statement }}</div>
+        {% endwith %}
+
         {% for q_part in q_sub_group.question_parts %}
-            <div style="background-color: azure">Text - {{ q_part.text }}</div>
-            <div style="background-color: azure">Statement - {{ q_part.statement }}</div>
-            {% for result_item in result.result_items %}
-                =-=-=-=-=-=-=-=-=-=>
-            {% endfor %}
+            {% if q_part.type == 'radio' %}
+                <div style="background-color: azure">Text - {{ q_part.text }}</div>
+                <div style="background-color: azure">Statement - {{ q_part.statement }}</div>
+                <div style="background-color: azure">
+                    {% with %}
+                        {% set result_answer=result_answers[q_part.id][0] %}
+                        {{ result_answer.statement }}
+                    {% endwith %}
+                </div>
+            {% else %}
+                <div style="background-color: azure">Text - {{ q_part.text }}</div>
+                <div style="background-color: azure">Statement - {{ q_part.statement }}</div>
+                <div style="background-color: azure">
+                    {% with %}
+                        {% set result_answers=result_answers[q_part.id] %}
+                        {% for answer in q_part.answers %}
+                            {% if answer in result_answers %}
+                                {{ answer.text }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+
+
+            {% endif %}
         {% endfor %}
     {% endfor %}
 {% endfor %}
